@@ -1,17 +1,9 @@
 package popova.simulation.animals;
 
-import popova.simulation.gui.ForestMap;
-import popova.simulation.interfaces.Moveable;
-import popova.simulation.items.Berry;
-import popova.simulation.items.Coordinates;
+import popova.simulation.interfaces.Eatable;
+import popova.simulation.items.Item;
 
-import java.util.Random;
-
-import static popova.simulation.animals.Fox.FoodLevelIncreaser.*;
-import static popova.simulation.context.Utils.MAX_X;
-import static popova.simulation.context.Utils.MAX_Y;
-
-public class Fox extends Animal /*implements Moveable*/ {
+public class Fox extends Animal implements Eatable /*implements Moveable*/ {
 
 
 
@@ -20,30 +12,20 @@ public class Fox extends Animal /*implements Moveable*/ {
         super(foodLevel, speed, healthLevel /*, coordinates*/);
     }
 
-    public enum FoodLevelIncreaser {
-
-        BERRY(1), MOUSE(2), HARE(6);
-        private int foodLevelIncreasing;
-
-        FoodLevelIncreaser(int foodLevelincreasing) {
-            this.foodLevelIncreasing = foodLevelincreasing;
-        }
-
-        public int getFoodLevelIncreasing() {
-            return foodLevelIncreasing;
-        }
+  @Override
+    public int getFoodLevelIncreasing() {
+        return 10;
     }
 
 
     @Override
-    public <T> void eat(T eatenItem) {
-        if (eatenItem instanceof Berry) {
-            super.setFoodLevel(super.getFoodLevel() + BERRY.getFoodLevelIncreasing());
-        } else if (eatenItem instanceof Mouse) {
-            super.setFoodLevel(super.getFoodLevel() + MOUSE.getFoodLevelIncreasing());
-        } else if (eatenItem instanceof Hare) {
-            super.setFoodLevel(super.getFoodLevel() + HARE.getFoodLevelIncreasing());
+    public void eat(Item eatenItem) {
+        if (eatenItem instanceof Hare hare) {
+            setFoodLevel(getFoodLevel() + hare.getFoodLevelIncreasing());
+            hare.kill();
         }
+
+
 
     }
 

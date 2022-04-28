@@ -3,15 +3,14 @@ package popova.simulation.animals;
 import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
-public class Animal extends Item {
+public abstract class Animal extends Item {
     private int foodLevel;
     private int healthLevel;
 //    private Coordinates coordinates;
 
     protected Animal(int foodLevel, int speed, int healthLevel /*,Coordinates coordinates*/) {
-        super(speed);
+        super(speed, healthLevel);
         this.foodLevel = foodLevel;
-        this.healthLevel = healthLevel;
 //        this.coordinates = coordinates;
     }
 
@@ -20,23 +19,13 @@ public class Animal extends Item {
     }
 
 
-    public int getHealthLevel() {
-        return healthLevel;
-    }
-
-    public void setHealthLevel(int healthLevel) {
-        this.healthLevel = healthLevel;
-    }
-
     public void setFoodLevel (int foodLevel){
         this.foodLevel = foodLevel;
     }
 
 //    public Coordinates getCoordinates() { return coordinates;}
 
-    public <T> void eat(T eatenItem){
-        return;
-    }
+    public abstract void eat(Item eatenItem);
 
 //    public void wound(Coordinates hunterCoordinates){
 //        if (hunterCoordinates.isNear(this.coordinates)){
@@ -45,8 +34,6 @@ public class Animal extends Item {
 //        return;
 //    }
 
-    public boolean isKilled (){
-        return this.healthLevel <= 0;
-    }
+
     
 }
