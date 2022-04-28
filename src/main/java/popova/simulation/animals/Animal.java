@@ -1,9 +1,9 @@
 package popova.simulation.animals;
 
-import popova.simulation.items.Coordinates;
+import popova.simulation.interfaces.Killer;
 import popova.simulation.items.Item;
 
-public abstract class Animal extends Item {
+public abstract class Animal extends Item implements Killer {
     private int foodLevel;
     private int healthLevel;
 //    private Coordinates coordinates;
@@ -25,7 +25,7 @@ public abstract class Animal extends Item {
 
 //    public Coordinates getCoordinates() { return coordinates;}
 
-    public abstract void eat(Item eatenItem);
+    public abstract void kill(Item eatenItem);
 
 //    public void wound(Coordinates hunterCoordinates){
 //        if (hunterCoordinates.isNear(this.coordinates)){

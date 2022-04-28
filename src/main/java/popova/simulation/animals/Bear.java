@@ -23,10 +23,10 @@ public class Bear extends Animal {
 
 
     @Override
-    public void eat(Item eatenItem) {
+    public void kill(Item eatenItem) {
         if (eatenItem instanceof Fox fox) {
             setFoodLevel(getFoodLevel() + fox.getFoodLevelIncreasing());
-            fox.kill();
+            fox.setHealthToZero();
         }
 
     }

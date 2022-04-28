@@ -19,10 +19,10 @@ public class Fox extends Animal implements Eatable /*implements Moveable*/ {
 
 
     @Override
-    public void eat(Item eatenItem) {
+    public void kill(Item eatenItem) {
         if (eatenItem instanceof Hare hare) {
             setFoodLevel(getFoodLevel() + hare.getFoodLevelIncreasing());
-            hare.kill();
+            hare.setHealthToZero();
         }
 
 

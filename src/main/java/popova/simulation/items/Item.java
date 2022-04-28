@@ -36,7 +36,7 @@ public abstract class Item {
         return healthLevel <= 0;
     }
 
-    public void kill() {
+    public void setHealthToZero() {
         healthLevel = 0;
     }
 }

@@ -1,24 +1,21 @@
 package popova.simulation.humans;
 
+import popova.simulation.interfaces.Killer;
 import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
-public class Human implements Item {
-    private int speed;
+public abstract class Human extends Item implements Killer {
     private int accuracy;
     private int killingItemsCount;
-    private Coordinates coordinates;
+//    private Coordinates coordinates;
 
-    protected Human(int speed, int accuracy, int killingItemsCount, Coordinates coordinates) {
-        this.speed = speed;
+    protected Human(int speed, int accuracy, int killingItemsCount/*, Coordinates coordinates*/) {
+        super(speed, 1);
         this.accuracy = accuracy;
         this.killingItemsCount = killingItemsCount;
-        this.coordinates = coordinates;
+//        this.coordinates = coordinates;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
 
     public int getAccuracy() {return accuracy; }
 
@@ -26,8 +23,9 @@ public class Human implements Item {
         return killingItemsCount;
     }
 
-    public <T> void kill(T animal){
-        return;
+    @Override
+    public void kill(Item item) {
+        item.setHealthToZero();
     }
 
     public boolean noMoreKillingItems (){
