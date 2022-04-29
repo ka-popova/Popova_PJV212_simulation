@@ -1,9 +1,10 @@
 package popova.simulation.animals;
 
 import popova.simulation.interfaces.Killer;
+import popova.simulation.items.Alive;
 import popova.simulation.items.Item;
 
-public abstract class Animal extends Item implements Killer {
+public abstract class Animal extends Alive implements Killer {
     private int foodLevel;
     private int healthLevel;
 //    private Coordinates coordinates;

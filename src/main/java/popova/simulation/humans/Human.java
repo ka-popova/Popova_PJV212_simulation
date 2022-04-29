@@ -1,10 +1,11 @@
 package popova.simulation.humans;
 
 import popova.simulation.interfaces.Killer;
+import popova.simulation.items.Alive;
 import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
-public abstract class Human extends Item implements Killer {
+public abstract class Human extends Alive implements Killer {
     private int accuracy;
     private int killingItemsCount;
 //    private Coordinates coordinates;
