@@ -34,6 +34,8 @@ public class MapFactory {
         int initNumberBerry = r.nextInt(40);
         int initNumberHunter = r.nextInt(5);
 
+
+
 //        //constructor AnimalContext
 //        AnimalContext animalContext = new AnimalContext (initNumberFox, initNumberBear, initNumberHare, initNumberMouse, initNumberBerry, initNumberHunter);
 
