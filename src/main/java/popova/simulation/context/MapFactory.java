@@ -72,16 +72,16 @@ public class MapFactory {
         }
 
         for (int i=0; i<initNumberHare; i++) {
-        int randFoodLevel = rand(2, 5);
-        int randHealthLevel = rand(3, 10);
-        int randSpeed = rand(0, 5);
-        List<Coordinates> free = forestMap.getFreeSpaces();
-        int n = rand(0, free.size()-1);
-        Coordinates coordinates = free.get(n);
+            int randFoodLevel = rand(2, 5);
+            int randHealthLevel = rand(3, 10);
+            int randSpeed = rand(0, 5);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
 
-        Hare hare = new Hare(randFoodLevel, randSpeed, randHealthLevel);
+            Hare hare = new Hare(randFoodLevel, randSpeed, randHealthLevel);
 
-        forestMap.setItem(hare, coordinates);
+            forestMap.setItem(hare, coordinates);
     }
 
         for (int i=0; i<initNumberMouse; i++) {

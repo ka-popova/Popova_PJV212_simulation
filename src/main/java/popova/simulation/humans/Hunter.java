@@ -25,7 +25,8 @@ public class Hunter extends Human {
 
     }
 
-
-
-
+    @Override
+    public int getRange() {
+        return 10;
+    }
 }

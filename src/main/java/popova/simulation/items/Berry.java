@@ -18,7 +18,7 @@ public class Berry extends Item implements Eatable {
 //    }
 
     public Berry(){
-        super(0, 1);
+        super(1);
     }
 
     @Override

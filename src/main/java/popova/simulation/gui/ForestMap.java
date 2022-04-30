@@ -51,5 +51,21 @@ public class ForestMap {
         }
         return listFreeSpaces;
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int y = 0; y < map.length; y++) {
+            for (int x=0; x < map[y].length; x++) {
+                if (map[y][x] == null) {
+                    stringBuilder.append("    ");
+                }
+                else {
+                    stringBuilder.append(map[y][x]).append(" ");
+                }
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }
