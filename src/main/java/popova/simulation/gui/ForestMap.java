@@ -1,5 +1,6 @@
 package popova.simulation.gui;
 
+import popova.simulation.context.Size;
 import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
@@ -26,6 +27,10 @@ public class ForestMap {
 
     public void setItem(Item item, Coordinates coordinates) {
         map[coordinates.getY()][coordinates.getX()] = item;
+    }
+
+    public Size getSize() {
+        return new Size(MAX_Y, MAX_X);
     }
 
 //    public void moveItem(Item item, Coordinates oldCoordinates, Coordinates newCoordinates) {
