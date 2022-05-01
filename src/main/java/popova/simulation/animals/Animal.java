@@ -26,9 +26,14 @@ public abstract class Animal extends Alive implements Killer {
 
 //    public Coordinates getCoordinates() { return coordinates;}
 
-    public abstract void kill(Item eatenItem);
+    public abstract boolean kill(Item eatenItem);
 
-//    public void wound(Coordinates hunterCoordinates){
+    @Override
+    public int getRange() {
+        return 1;
+    }
+
+    //    public void wound(Coordinates hunterCoordinates){
 //        if (hunterCoordinates.isNear(this.coordinates)){
 //            this.healthLevel = 0;
 //        }

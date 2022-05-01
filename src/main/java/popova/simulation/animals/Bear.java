@@ -23,11 +23,13 @@ public class Bear extends Animal {
 
 
     @Override
-    public void kill(Item eatenItem) {
+    public boolean kill(Item eatenItem) {
         if (eatenItem instanceof Fox fox) {
             setFoodLevel(getFoodLevel() + fox.getFoodLevelIncreasing());
             fox.setHealthToZero();
+            return true;
         }
+        return false;
 
     }
 }

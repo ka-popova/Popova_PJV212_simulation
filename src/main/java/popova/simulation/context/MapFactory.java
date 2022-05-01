@@ -27,12 +27,14 @@ public class MapFactory {
         //random generation numbers of items
 
         Random r = new Random();
-        int initNumberFox = r.nextInt(10);
-        int initNumberBear = r.nextInt(10);
-        int initNumberHare = r.nextInt(10);
-        int initNumberMouse = r.nextInt(10);
-        int initNumberBerry = r.nextInt(40);
-        int initNumberHunter = r.nextInt(5);
+        int initNumberFox = rand(3,20);
+        int initNumberBear = rand(3,20);
+        int initNumberHare = rand(3,20);
+        int initNumberMouse = rand(3,20);
+        int initNumberBerry = rand(30,100);
+        int initNumberHunter = rand(3,10);
+
+
 
 //        //constructor AnimalContext
 //        AnimalContext animalContext = new AnimalContext (initNumberFox, initNumberBear, initNumberHare, initNumberMouse, initNumberBerry, initNumberHunter);
@@ -44,43 +46,78 @@ public class MapFactory {
 
         for (int i=0; i<initNumberFox; i++) {
 
-                int randFoodLevel = r.nextInt(4)+3;
-                int randHealthLevel = r.nextInt(4)+3;
-                int randSpeed = r.nextInt(6);
-                List<Coordinates> free = forestMap.getFreeSpaces();
-                int n = rand(0, free.size()-1);
-                Coordinates coordinates = free.get(n);
+            int randFoodLevel = rand(3, 10);
+            int randHealthLevel = rand(3, 10);
+            int randSpeed = rand(0, 5);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
 
-                Fox fox = new Fox(randFoodLevel, randSpeed, randHealthLevel);
+            Fox fox = new Fox(randFoodLevel, randSpeed, randHealthLevel);
 
             forestMap.setItem(fox, coordinates);
         }
 
         for (int i=0; i<initNumberBear; i++) {
-            Bear bear = Bear.create();
-            animalContext.addBear(bear);
+            int randFoodLevel = rand(6, 20);
+            int randHealthLevel = rand(3, 10);
+            int randSpeed = rand(0, 4);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
+
+            Bear bear = new Bear(randFoodLevel, randSpeed, randHealthLevel);
+
+            forestMap.setItem(bear, coordinates);
         }
 
         for (int i=0; i<initNumberHare; i++) {
-            Hare hare = Hare.create();
-            animalContext.addHare(hare);
-        }
+            int randFoodLevel = rand(2, 5);
+            int randHealthLevel = rand(3, 10);
+            int randSpeed = rand(0, 5);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
+
+            Hare hare = new Hare(randFoodLevel, randSpeed, randHealthLevel);
+
+            forestMap.setItem(hare, coordinates);
+    }
 
         for (int i=0; i<initNumberMouse; i++) {
-            Mouse mouse = Mouse.create();
-            animalContext.addMouse(mouse);
+            int randFoodLevel = rand(1, 3);
+            int randHealthLevel = rand(3, 10);
+            int randSpeed = rand(0, 3);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
+
+            Mouse mouse = new Mouse(randFoodLevel, randSpeed, randHealthLevel);
+
+            forestMap.setItem(mouse, coordinates);
         }
 
         for (int i=0; i<initNumberBerry; i++) {
-            Berry berry = Berry.create();
-            animalContext.addBerry(berry);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
+
+            Berry berry = new Berry();
+
+            forestMap.setItem(berry, coordinates);
         }
 
         for (int i=0; i<initNumberHunter; i++) {
-            Hunter hunter = Hunter.create();
-            animalContext.addHunter(hunter);
-        }
+            int randSpeed = rand(3, 8);
+            int randAccuracy = rand(3, 9);
+            int randKillingItems = rand(5, 20);
+            List<Coordinates> free = forestMap.getFreeSpaces();
+            int n = rand(0, free.size()-1);
+            Coordinates coordinates = free.get(n);
 
-        return animalContext;
+            Hunter hunter = new Hunter(randSpeed, randAccuracy, randKillingItems);
+
+            forestMap.setItem(hunter, coordinates);
+        }
     }
 }

@@ -34,4 +34,9 @@ public abstract class Item {
     public void setHealthToZero() {
         healthLevel = 0;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName().substring(0,3);
+    }
 }

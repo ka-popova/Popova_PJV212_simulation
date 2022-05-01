@@ -25,9 +25,12 @@ public abstract class Human extends Alive implements Killer {
     }
 
     @Override
-    public void kill(Item item) {
+    public boolean kill(Item item) {
         item.setHealthToZero();
+        return true;
     }
+
+    public abstract int getRange();
 
     public boolean noMoreKillingItems (){
         return this.killingItemsCount <= 0;
