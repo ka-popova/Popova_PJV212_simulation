@@ -13,11 +13,11 @@ public class Controller {
         return forestMap;
     }
 
-    public void iterate(){
-
-
-        for (int y = 0; y < map.length; y++) {
-            for (int x = 0; x < map[y].length; x++) {
+    public void iterate() {
+        Size mapSize = forestMap.getSize();
+        for (int y = 0; y < mapSize.getHeight(); y++) {
+            for (int x = 0; x < mapSize.getWidth(); x++) {
             }
         }
+    }
 }

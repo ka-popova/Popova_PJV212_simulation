@@ -23,11 +23,13 @@ public class Mouse extends Animal implements Eatable {
 
 
     @Override
-    public void kill(Item eatenItem ) {
+    public boolean kill(Item eatenItem ) {
         if (eatenItem instanceof Berry berry) {
             setFoodLevel(getFoodLevel() + berry.getFoodLevelIncreasing());
             berry.setHealthToZero();
+            return true;
         }
+        return false;
     }
 
         @Override

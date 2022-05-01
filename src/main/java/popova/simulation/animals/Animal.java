@@ -26,7 +26,7 @@ public abstract class Animal extends Alive implements Killer {
 
 //    public Coordinates getCoordinates() { return coordinates;}
 
-    public abstract void kill(Item eatenItem);
+    public abstract boolean kill(Item eatenItem);
 
     @Override
     public int getRange() {
