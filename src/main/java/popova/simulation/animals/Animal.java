@@ -1,7 +1,10 @@
 package popova.simulation.animals;
 
+import popova.simulation.context.MapFactory;
+import popova.simulation.gui.ForestMap;
 import popova.simulation.interfaces.Killer;
 import popova.simulation.items.Alive;
+import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
 public abstract class Animal extends Alive implements Killer {
@@ -32,6 +35,101 @@ public abstract class Animal extends Alive implements Killer {
     public int getRange() {
         return 1;
     }
+
+    private boolean sameClass(Object o1, Object o2) {
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+        String o1Class = o1.getClass().getName();
+        String o2Class = o2.getClass().getName();
+        return o1Class.equals(o2Class);
+
+    }
+
+
+    private Item makeAnimal() {
+        if (this instanceof Bear) {
+            return MapFactory.createBear();
+        }
+        if (this instanceof Fox) {
+            return MapFactory.createFox();
+        }
+        if (this instanceof Hare) {
+            return MapFactory.createHare();
+        }
+        if (this instanceof Mouse) {
+            return MapFactory.createMouse();
+        }
+        else {
+            return null;
+        }
+
+    }
+
+    public void makeNewAnimal (ForestMap forestMap, int x, int y) {
+        Item item = null;
+
+        //go right
+        try {
+            item = forestMap.getItem(new Coordinates(x + 1, y));
+        }
+        catch (ArrayIndexOutOfBoundsException ignored) {
+
+        }
+
+        if (sameClass(item, this)) {
+            MapFactory.randomLocate(forestMap, makeAnimal());
+            return;
+
+        }
+
+
+        //go left
+        try {
+            item = forestMap.getItem(new Coordinates(x-1, y));
+        }
+        catch (ArrayIndexOutOfBoundsException ignored) {
+
+        }
+
+        if (sameClass(item, this))  {
+            MapFactory.randomLocate(forestMap, makeAnimal());
+            return;
+
+        }
+        //go down
+
+        try {
+            item = forestMap.getItem(new Coordinates(x, y+1));
+        }
+        catch (ArrayIndexOutOfBoundsException ignored) {
+
+        }
+
+
+        if (sameClass(item, this)) {
+            MapFactory.randomLocate(forestMap, makeAnimal());
+            return;
+
+        }
+        //go up
+        try {
+            item = forestMap.getItem(new Coordinates(x, y-1));
+        }
+        catch (ArrayIndexOutOfBoundsException ignored) {
+
+        }
+
+
+        if (sameClass(item, this))  {
+            MapFactory.randomLocate(forestMap, makeAnimal());
+            return;
+
+        }
+
+    }
+
+
 
     //    public void wound(Coordinates hunterCoordinates){
 //        if (hunterCoordinates.isNear(this.coordinates)){

@@ -8,6 +8,7 @@ import popova.simulation.gui.ForestMap;
 import popova.simulation.humans.Hunter;
 import popova.simulation.items.Berry;
 import popova.simulation.items.Coordinates;
+import popova.simulation.items.Item;
 
 import java.util.List;
 import java.util.Random;
@@ -45,54 +46,37 @@ public class MapFactory {
 
 
         for (int i=0; i<initNumberFox; i++) {
-
-            int randFoodLevel = rand(3, 10);
-            int randHealthLevel = rand(3, 10);
-            int randSpeed = rand(0, 5);
+            Fox fox = createFox();
             List<Coordinates> free = forestMap.getFreeSpaces();
             int n = rand(0, free.size()-1);
             Coordinates coordinates = free.get(n);
-
-            Fox fox = new Fox(randFoodLevel, randSpeed, randHealthLevel);
 
             forestMap.setItem(fox, coordinates);
         }
 
         for (int i=0; i<initNumberBear; i++) {
-            int randFoodLevel = rand(6, 20);
-            int randHealthLevel = rand(3, 10);
-            int randSpeed = rand(0, 4);
+            Bear bear = createBear();
             List<Coordinates> free = forestMap.getFreeSpaces();
             int n = rand(0, free.size()-1);
             Coordinates coordinates = free.get(n);
-
-            Bear bear = new Bear(randFoodLevel, randSpeed, randHealthLevel);
 
             forestMap.setItem(bear, coordinates);
         }
 
         for (int i=0; i<initNumberHare; i++) {
-            int randFoodLevel = rand(2, 5);
-            int randHealthLevel = rand(3, 10);
-            int randSpeed = rand(0, 5);
+            Hare hare = createHare();
             List<Coordinates> free = forestMap.getFreeSpaces();
             int n = rand(0, free.size()-1);
             Coordinates coordinates = free.get(n);
-
-            Hare hare = new Hare(randFoodLevel, randSpeed, randHealthLevel);
 
             forestMap.setItem(hare, coordinates);
     }
 
         for (int i=0; i<initNumberMouse; i++) {
-            int randFoodLevel = rand(1, 3);
-            int randHealthLevel = rand(3, 10);
-            int randSpeed = rand(0, 3);
+            Mouse mouse = createMouse();
             List<Coordinates> free = forestMap.getFreeSpaces();
             int n = rand(0, free.size()-1);
             Coordinates coordinates = free.get(n);
-
-            Mouse mouse = new Mouse(randFoodLevel, randSpeed, randHealthLevel);
 
             forestMap.setItem(mouse, coordinates);
         }
@@ -120,4 +104,48 @@ public class MapFactory {
             forestMap.setItem(hunter, coordinates);
         }
     }
+
+    public static Bear createBear(){
+        int randFoodLevel = rand(6, 20);
+        int randHealthLevel = rand(3, 10);
+        int randSpeed = rand(0, 4);
+
+        Bear bear = new Bear(randFoodLevel, randSpeed, randHealthLevel);
+        return bear;
+    }
+
+    public static Fox createFox() {
+        int randFoodLevel = rand(3, 10);
+        int randHealthLevel = rand(3, 10);
+        int randSpeed = rand(0, 5);
+        Fox fox = new Fox(randFoodLevel, randSpeed, randHealthLevel);
+        return fox;
+    }
+
+    public static Hare createHare() {
+        int randFoodLevel = rand(2, 5);
+        int randHealthLevel = rand(3, 10);
+        int randSpeed = rand(0, 5);
+        Hare hare = new Hare(randFoodLevel, randSpeed, randHealthLevel);
+        return hare;
+    }
+
+    public static Mouse createMouse() {
+        int randFoodLevel = rand(1, 3);
+        int randHealthLevel = rand(3, 10);
+        int randSpeed = rand(0, 3);
+        Mouse mouse = new Mouse(randFoodLevel, randSpeed, randHealthLevel);
+        return mouse;
+    }
+
+    public static void randomLocate(ForestMap forestMap, Item item) {
+        List<Coordinates> free = forestMap.getFreeSpaces();
+        int n = rand(0, free.size()-1);
+        Coordinates coordinates = free.get(n);
+
+        forestMap.setItem(item, coordinates);
+
+    }
+
+
 }
