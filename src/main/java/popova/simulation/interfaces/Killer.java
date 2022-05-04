@@ -26,7 +26,7 @@ public interface Killer {
                 killSuccess = getItemAndKill(forestMap, x, coordinates.getY());
             }
             catch(ArrayIndexOutOfBoundsException e) {
-                return;
+                break;
 
             }
             if (killSuccess) {
@@ -41,7 +41,7 @@ public interface Killer {
                 killSuccess = getItemAndKill(forestMap, x, coordinates.getY());
             }
             catch(ArrayIndexOutOfBoundsException e) {
-                return;
+                break;
 
             }
             if (killSuccess) {
@@ -55,7 +55,7 @@ public interface Killer {
                 killSuccess = getItemAndKill(forestMap, coordinates.getX(), y);
             }
             catch(ArrayIndexOutOfBoundsException e) {
-                return;
+                break;
 
             }
             if (killSuccess) {
@@ -70,7 +70,7 @@ public interface Killer {
                 killSuccess = getItemAndKill(forestMap, coordinates.getX(), y);
             }
             catch(ArrayIndexOutOfBoundsException e) {
-                return;
+                break;
 
             }
             if (killSuccess) {

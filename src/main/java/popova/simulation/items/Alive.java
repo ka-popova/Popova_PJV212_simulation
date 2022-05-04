@@ -1,6 +1,8 @@
 package popova.simulation.items;
 
-public abstract class Alive extends Item{
+import popova.simulation.interfaces.Moveable;
+
+public abstract class Alive extends Moveable {
     private int speed;
 
 
