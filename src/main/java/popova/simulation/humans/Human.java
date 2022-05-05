@@ -6,13 +6,15 @@ import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
 
 public abstract class Human extends Alive implements Killer {
+    private int killingRange;
     private int accuracy;
     private int killingItemsCount;
 //    private Coordinates coordinates;
 
-    protected Human(int speed, int accuracy, int killingItemsCount/*, Coordinates coordinates*/) {
+    protected Human(int speed, int killingRange, int accuracy, int killingItemsCount/*, Coordinates coordinates*/) {
         super(speed, 1);
         this.accuracy = accuracy;
+        this.killingRange = killingRange;
         this.killingItemsCount = killingItemsCount;
 //        this.coordinates = coordinates;
     }
@@ -22,6 +24,10 @@ public abstract class Human extends Alive implements Killer {
 
     public int getKillingItemsCount() {
         return killingItemsCount;
+    }
+
+    public int getKillingRange() {
+        return killingRange;
     }
 
     @Override

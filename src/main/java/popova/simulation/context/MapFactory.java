@@ -91,12 +91,13 @@ public class MapFactory {
         for (int i=0; i<initNumberHunter; i++) {
             int randSpeed = Utils.rand(3, 8);
             int randAccuracy = Utils.rand(3, 9);
+            int randKillingRange = Utils.rand(3,10);
             int randKillingItems = Utils.rand(5, 20);
             List<Coordinates> free = forestMap.getFreeSpaces();
             int n = Utils.rand(0, free.size()-1);
             Coordinates coordinates = free.get(n);
 
-            Hunter hunter = new Hunter(randSpeed, randAccuracy, randKillingItems);
+            Hunter hunter = new Hunter(randSpeed, randAccuracy, randKillingRange, randKillingItems);
 
             forestMap.setItem(hunter, coordinates);
         }

@@ -12,7 +12,7 @@ public abstract class Moveable extends Item {
         super(healthLevel);
     };
 
-    private void moveRight(ForestMap forestMap, int x, int y) {
+    public void moveRight(ForestMap forestMap, int x, int y) {
         int currentX = x;
         for (int pos = x+1; pos <= x+getSpeed(); pos++) {
             Item item;
@@ -31,7 +31,7 @@ public abstract class Moveable extends Item {
         forestMap.removeItem(this, new Coordinates(x,y));
     }
 
-    private void moveLeft(ForestMap forestMap, int x, int y) {
+    public void moveLeft(ForestMap forestMap, int x, int y) {
         int currentX = x;
         for (int pos = x - 1; pos >= x - getSpeed(); pos--) {
             Item item;
@@ -48,7 +48,7 @@ public abstract class Moveable extends Item {
         forestMap.setItem(this, new Coordinates(currentX, y));
         forestMap.removeItem(this, new Coordinates(x, y));
     }
-    private void moveDown(ForestMap forestMap, int x, int y) {
+    public void moveDown(ForestMap forestMap, int x, int y) {
         int currentY = y;
         for (int pos = y + 1; pos <= y + getSpeed(); pos++) {
             Item item;
@@ -66,7 +66,7 @@ public abstract class Moveable extends Item {
         forestMap.removeItem(this, new Coordinates(x, y));
     }
 
-    private void moveUp(ForestMap forestMap, int x, int y) {
+    public void moveUp(ForestMap forestMap, int x, int y) {
         int currentY = y;
         for (int pos = y-1; pos >= y-getSpeed(); pos--) {
             Item item;
@@ -86,7 +86,7 @@ public abstract class Moveable extends Item {
 
     }
 
-    public void move(ForestMap forestMap, int x, int y) {
+    public void defaultMove(ForestMap forestMap, int x, int y) {
         int direction = Utils.rand(1,4);
         if (direction == 1) {
             moveRight(forestMap, x, y);
@@ -101,9 +101,7 @@ public abstract class Moveable extends Item {
             moveUp(forestMap, x, y);
         }
 
-
-
-
-
     }
+
+    public abstract void move(ForestMap forestMap, int x, int y);
 }
