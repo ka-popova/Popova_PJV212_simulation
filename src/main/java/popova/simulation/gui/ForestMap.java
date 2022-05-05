@@ -21,7 +21,7 @@ public class ForestMap {
         return map[coordinates.getY()][coordinates.getX()];
     }
 
-    public void removeItem(Coordinates coordinates) {
+    public void removeItem(Item item, Coordinates coordinates) {
         map[coordinates.getY()][coordinates.getX()] = null;
     }
 

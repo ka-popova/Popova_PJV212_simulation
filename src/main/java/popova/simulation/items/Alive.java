@@ -19,4 +19,5 @@ public abstract class Alive extends Moveable {
         this.speed = speed;
     }
 
+
 }

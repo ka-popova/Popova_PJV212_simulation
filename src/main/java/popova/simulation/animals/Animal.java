@@ -129,6 +129,14 @@ public abstract class Animal extends Alive implements Killer {
 
     }
 
+    public void move(ForestMap forestMap, int x, int y) {
+        defaultMove(forestMap, x, y);
+    }
+
+
+
+
+
 
 
     //    public void wound(Coordinates hunterCoordinates){

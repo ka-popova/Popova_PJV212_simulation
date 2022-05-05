@@ -1,7 +1,10 @@
 package popova.simulation.humans;
 
+import popova.simulation.animals.Animal;
+import popova.simulation.gui.ForestMap;
 import popova.simulation.interfaces.Killer;
 import popova.simulation.items.Coordinates;
+import popova.simulation.items.Item;
 
 import java.util.Random;
 
@@ -20,13 +23,37 @@ public class Hunter extends Human {
 //        return new Hunter (randSpeed, randAccuracy, randKillingItemsCount, coordinates);
 //    }
 
-    public Hunter(int speed, int accuracy, int killingItemsCount/*, Coordinates coordinates*/) {
-        super(speed, accuracy, killingItemsCount/*, coordinates*/);
+    public Hunter(int speed, int accuracy, int killingRange, int killingItemsCount/*, Coordinates coordinates*/) {
+        super(speed, accuracy, killingRange, killingItemsCount/*, coordinates*/);
 
     }
 
     @Override
     public int getRange() {
         return 10;
+    }
+
+    private int getDistanceRight(ForestMap forestMap, int x, int y){
+        for (int itemPos = x+1; itemPos < forestMap.getSize().getWidth(); x++) {
+            Item item = forestMap.getItem(new Coordinates(itemPos, y));
+            if (item != null) {
+                if (item instanceof Animal){
+                    return itemPos-x;
+                }
+                return -1;
+            }
+
+        }
+        return -1;
+    }
+hunt
+    @Override
+    public void move(ForestMap forestMap, int x, int y) {
+
+
+
+
+
+        defaultMove();
     }
 }
