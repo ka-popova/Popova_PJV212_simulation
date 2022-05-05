@@ -1,5 +1,6 @@
 package popova.simulation.interfaces;
 
+import popova.simulation.context.Utils;
 import popova.simulation.gui.ForestMap;
 import popova.simulation.items.Coordinates;
 import popova.simulation.items.Item;
@@ -11,7 +12,7 @@ public abstract class Moveable extends Item {
         super(healthLevel);
     };
 
-    public void move(ForestMap forestMap, int x, int y) {
+    private void moveRight(ForestMap forestMap, int x, int y) {
         int currentX = x;
         for (int pos = x+1; pos <= x+getSpeed(); pos++) {
             Item item;
@@ -28,15 +29,15 @@ public abstract class Moveable extends Item {
         }
         forestMap.setItem(this, new Coordinates(currentX, y) );
         forestMap.removeItem(this, new Coordinates(x,y));
+    }
 
-        currentX = x;
-
-        for (int pos = x-1; pos >= x-getSpeed(); pos--) {
+    private void moveLeft(ForestMap forestMap, int x, int y) {
+        int currentX = x;
+        for (int pos = x - 1; pos >= x - getSpeed(); pos--) {
             Item item;
             try {
                 item = forestMap.getItem(new Coordinates(pos, y));
-            }
-            catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 break;
             }
             if (item != null) {
@@ -44,17 +45,16 @@ public abstract class Moveable extends Item {
             }
             currentX--;
         }
-        forestMap.setItem(this, new Coordinates(currentX, y) );
-        forestMap.removeItem(this, new Coordinates(x,y));
-
+        forestMap.setItem(this, new Coordinates(currentX, y));
+        forestMap.removeItem(this, new Coordinates(x, y));
+    }
+    private void moveDown(ForestMap forestMap, int x, int y) {
         int currentY = y;
-
-        for (int pos = y+1; pos <= y+getSpeed(); pos++) {
+        for (int pos = y + 1; pos <= y + getSpeed(); pos++) {
             Item item;
             try {
                 item = forestMap.getItem(new Coordinates(x, pos));
-            }
-            catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 break;
             }
             if (item != null) {
@@ -62,11 +62,12 @@ public abstract class Moveable extends Item {
             }
             currentY++;
         }
-        forestMap.setItem(this, new Coordinates(x, currentY) );
-        forestMap.removeItem(this, new Coordinates(x,y));
+        forestMap.setItem(this, new Coordinates(x, currentY));
+        forestMap.removeItem(this, new Coordinates(x, y));
+    }
 
-        currentY = y;
-
+    private void moveUp(ForestMap forestMap, int x, int y) {
+        int currentY = y;
         for (int pos = y-1; pos >= y-getSpeed(); pos--) {
             Item item;
             try {
@@ -82,6 +83,27 @@ public abstract class Moveable extends Item {
         }
         forestMap.setItem(this, new Coordinates(x, currentY) );
         forestMap.removeItem(this, new Coordinates(x,y));
+
+    }
+
+    public void move(ForestMap forestMap, int x, int y) {
+        int direction = Utils.rand(1,4);
+        if (direction == 1) {
+            moveRight(forestMap, x, y);
+        }
+        if (direction == 2) {
+            moveLeft(forestMap, x, y);
+        }
+        if (direction == 3) {
+            moveDown(forestMap, x, y);
+        }
+        if (direction == 4) {
+            moveUp(forestMap, x, y);
+        }
+
+
+
+
 
     }
 }

@@ -14,10 +14,13 @@ public class Main {
 //        System.out.println(controller.getForestMap());
 
         ForestMap map = new ForestMap();
+
 //        Hare hare1 = new Hare(4,3,4);
         Hare hare = new Hare(3,4,3);
 //        map.setItem(hare1, new Coordinates(0, 5));
         map.setItem(hare, new Coordinates(8, 7));
+        System.out.println(map);
+        System.out.println("---------------------");
 
         hare.move(map, 8, 7);
         System.out.println(map);
