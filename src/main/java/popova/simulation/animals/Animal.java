@@ -66,7 +66,7 @@ public abstract class Animal extends Alive implements Killer {
 
     }
 
-    public void makeNewAnimal (ForestMap forestMap, int x, int y) {
+    public boolean makeNewAnimal (ForestMap forestMap, int x, int y) {
         Item item = null;
 
         //go right
@@ -79,7 +79,7 @@ public abstract class Animal extends Alive implements Killer {
 
         if (sameClass(item, this)) {
             MapFactory.randomLocate(forestMap, makeAnimal());
-            return;
+            return true;
 
         }
 
@@ -94,7 +94,7 @@ public abstract class Animal extends Alive implements Killer {
 
         if (sameClass(item, this))  {
             MapFactory.randomLocate(forestMap, makeAnimal());
-            return;
+            return true;
 
         }
         //go down
@@ -109,7 +109,7 @@ public abstract class Animal extends Alive implements Killer {
 
         if (sameClass(item, this)) {
             MapFactory.randomLocate(forestMap, makeAnimal());
-            return;
+            return true;
 
         }
         //go up
@@ -123,10 +123,11 @@ public abstract class Animal extends Alive implements Killer {
 
         if (sameClass(item, this))  {
             MapFactory.randomLocate(forestMap, makeAnimal());
-            return;
+            return true;
 
         }
 
+        return false;
     }
 
     public void move(ForestMap forestMap, int x, int y) {

@@ -34,7 +34,7 @@ public class Hunter extends Human {
     }
 
     private int getDistanceRight(ForestMap forestMap, int x, int y){
-        for (int itemPos = x+1; itemPos < forestMap.getSize().getWidth(); x++) {
+        for (int itemPos = x+1; itemPos < forestMap.getSize().getWidth(); itemPos++) {
             Item item = forestMap.getItem(new Coordinates(itemPos, y));
             if (item != null) {
                 if (item instanceof Animal){
@@ -47,7 +47,7 @@ public class Hunter extends Human {
     }
 
     private int getDistanceLeft(ForestMap forestMap, int x, int y){
-        for (int itemPos = x-1; itemPos > forestMap.getSize().getWidth(); x--) {
+        for (int itemPos = x-1; itemPos >= 0; itemPos--) {
             Item item = forestMap.getItem(new Coordinates(itemPos, y));
             if (item != null) {
                 if (item instanceof Animal){
@@ -60,7 +60,7 @@ public class Hunter extends Human {
     }
 
     private int getDistanceDown(ForestMap forestMap, int x, int y){
-        for (int itemPos = y+1; itemPos < forestMap.getSize().getWidth(); y++) {
+        for (int itemPos = y+1; itemPos < forestMap.getSize().getHeight(); itemPos++) {
             Item item = forestMap.getItem(new Coordinates(x, itemPos));
             if (item != null) {
                 if (item instanceof Animal){
@@ -73,7 +73,7 @@ public class Hunter extends Human {
     }
 
     private int getDistanceUp(ForestMap forestMap, int x, int y){
-        for (int itemPos = y-1; itemPos > forestMap.getSize().getWidth(); y--) {
+        for (int itemPos = y-1; itemPos >= 0; itemPos--) {
             Item item = forestMap.getItem(new Coordinates(itemPos, y));
             if (item != null) {
                 if (item instanceof Animal){
@@ -91,7 +91,45 @@ public class Hunter extends Human {
 
     @Override
     public void move(ForestMap forestMap, int x, int y) {
+        int distRight = getDistanceRight(forestMap, x, y);
+        int distLeft = getDistanceLeft(forestMap, x, y);
+        int distDown = getDistanceDown(forestMap, x, y);
+        int distUp = getDistanceUp(forestMap, x, y);
 
-//        defaultMove();
+        int min = distRight;
+        if (distLeft < min && distLeft != -1){
+            min = distLeft;
+        }
+        if (distDown < min && distDown != -1) {
+            min = distDown;
+        }
+        if (distUp < min && distUp != -1) {
+            min = distUp;
+        }
+
+        if (min == -1) {
+            defaultMove(forestMap, x, y);
+            return;
+        }
+
+        if (min == distRight) {
+            moveRight(forestMap, x, y);
+            return;
+        }
+        if (min == distLeft) {
+            moveLeft(forestMap, x, y);
+            return;
+        }
+        if (min == distDown) {
+            moveDown(forestMap, x, y);
+            return;
+        }
+        if (min == distUp) {
+            moveUp(forestMap, x, y);
+            return;
+        }
+
+
+//
     }
 }
