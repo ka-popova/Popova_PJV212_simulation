@@ -18,7 +18,7 @@ public interface Killer {
         return false;
     }
 
-    default void tryToKill(ForestMap forestMap, Coordinates coordinates) {
+    default boolean tryToKill(ForestMap forestMap, Coordinates coordinates) {
         // go right
         for (int x = coordinates.getX()+1; x <= coordinates.getX() + getRange(); x++) {
             boolean killSuccess;
@@ -30,7 +30,7 @@ public interface Killer {
 
             }
             if (killSuccess) {
-                return;
+                return true;
             }
         }
 
@@ -45,7 +45,7 @@ public interface Killer {
 
             }
             if (killSuccess) {
-                return;
+                return true;
             }
         }
         // go down
@@ -59,7 +59,7 @@ public interface Killer {
 
             }
             if (killSuccess) {
-                return;
+                return true;
             }
 
         }
@@ -74,10 +74,12 @@ public interface Killer {
 
             }
             if (killSuccess) {
-                return;
+                return true;
             }
 
+
         }
+        return false;
 
 
     }
