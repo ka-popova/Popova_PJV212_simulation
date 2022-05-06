@@ -17,12 +17,15 @@ public class Main {
 
 //        Hare hare1 = new Hare(4,3,4);
         Hare hare = new Hare(3,4,3);
+        Hunter hunter = new Hunter(5, 10,6,10);
 //        map.setItem(hare1, new Coordinates(0, 5));
         map.setItem(hare, new Coordinates(8, 7));
-        System.out.println(map);
-        System.out.println("---------------------");
+        map.setItem(hunter, new Coordinates(3, 4));
+//        System.out.println(map);
+//        System.out.println("---------------------");
 
-        hare.move(map, 8, 7);
+//        hare.move(map, 8, 7);
+
         System.out.println(map);
 
 //

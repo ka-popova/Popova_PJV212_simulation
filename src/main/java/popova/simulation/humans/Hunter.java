@@ -42,18 +42,56 @@ public class Hunter extends Human {
                 }
                 return -1;
             }
-
         }
         return -1;
     }
-hunt
+
+    private int getDistanceLeft(ForestMap forestMap, int x, int y){
+        for (int itemPos = x-1; itemPos > forestMap.getSize().getWidth(); x--) {
+            Item item = forestMap.getItem(new Coordinates(itemPos, y));
+            if (item != null) {
+                if (item instanceof Animal){
+                    return x-itemPos;
+                }
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+    private int getDistanceDown(ForestMap forestMap, int x, int y){
+        for (int itemPos = y+1; itemPos < forestMap.getSize().getWidth(); y++) {
+            Item item = forestMap.getItem(new Coordinates(x, itemPos));
+            if (item != null) {
+                if (item instanceof Animal){
+                    return itemPos-y;
+                }
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+    private int getDistanceUp(ForestMap forestMap, int x, int y){
+        for (int itemPos = y-1; itemPos > forestMap.getSize().getWidth(); y--) {
+            Item item = forestMap.getItem(new Coordinates(itemPos, y));
+            if (item != null) {
+                if (item instanceof Animal){
+                    return y-itemPos;
+                }
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+
+
+
+
     @Override
     public void move(ForestMap forestMap, int x, int y) {
 
-
-
-
-
-        defaultMove();
+//        defaultMove();
     }
 }
